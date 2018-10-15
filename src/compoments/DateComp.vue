@@ -16,7 +16,7 @@
             <b-form-input  id="password" type="password" v-model="login.password" placeholder="Password">
             </b-form-input>
           </b-form-group>
-            <b-alert show variant="success">{{login.theTime}}</b-alert>
+            <b-alert show variant="success">{{login.startTime}}</b-alert>
           <b-button  class="btn title" type="submit" variant="primary">Login</b-button>
         </b-form>
       </div>
@@ -34,7 +34,7 @@
         login: {
           email: '',
           password: '',
-          theTime: new Date()
+          startTime: new Date()
         },
         show: true
       }
@@ -45,33 +45,34 @@
     },
     methods: {
 
-onSubmit(){
+    onSubmit(){
 
-      if(!this.login.email || !this.login.password ){
-      this.seen = true  
-      this.alert = 'Please fill in all required fields';
-      }
-      else {
+        if(!this.login.email || !this.login.password ){
+        this.seen = true  
+        this.alert = 'Please fill in all required fields';
+        }
+        else {
+          
+        let editUser = {
+        email: this.login.email,     
+        password: this.login.password,
+        startTime: this.login.startTime,
+        }
+
+        this.$http.put("http://localhost:3000/", editUser )
+        .then((res) => {
+        this.seen = true; 
+        this.alert = 'User edited'
+        }) .catch (res => {
+          console.error(error);
+          
+        })
         
-      let newUser = {
-      email: this.login.email,     
-      password: this.login.password,
-      startTime: this.login.startTime,
-      }
+        }
+        }
 
-      this.$http.put("http://localhost:3000/5bc07e9e11368127b76aa01b", newUser )
-      .then(res => {
-      this.seen = true; 
-      this.alert = 'User edited'
-      }) .catch (res => {
-        console.log(req.params.id)
-      })
-      
+        }
+    
       }
-      }
-
-      }
-  
-    }
 
 </script>

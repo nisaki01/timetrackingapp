@@ -28,11 +28,12 @@
           </b-form-group>
              
 
-          <b-alert show v-if="seen" variant="success"  >{{alert}}</b-alert>
+          <b-alert show v-if="seen" variant="success">{{alert}}</b-alert>
 
           <b-alert show variant="success">{{adduser.startTime}}</b-alert>
      
           <b-button class="btn title" type="submit" variant="primary">Add</b-button>
+          
        
         </b-form>
       </div>
@@ -51,7 +52,8 @@
         first_name: '',
         last_name: '',
         password: '',
-        startTime: new Date()
+        startTime: new Date(),
+        isActive: false
           
         },
         show: true,
@@ -61,7 +63,7 @@
     },
 
     methods: {
-      onSubmit(){
+          onSubmit(){
 
       if(!this.adduser.first_name || !this.adduser.last_name || !this.adduser.email || !this.adduser.password  ){
       this.seen = true  
@@ -75,6 +77,7 @@
       email: this.adduser.email,
       password: this.adduser.password,
       startTime: this.adduser.startTime,
+      isActive: this.adduser.isActive,
       }
 
       this.$http.post("http://localhost:3000/", newUser)
@@ -83,6 +86,8 @@
       this.alert = 'User Added'
       }) .catch (res => {
         console.log(res)
+        this.seen = true;
+        this.alert = 'Error'
       })
       
       }
