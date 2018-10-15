@@ -45,7 +45,7 @@
 </template>
 
 <script>
-
+const moment = require('moment')
   export default {
     data() {
       return {
@@ -62,6 +62,12 @@
         alert: '',
         seen: false,
         
+      }
+    },
+
+    filters: {
+      changeDate(value){
+        return moment(value).formatNow();
       }
     },
 
