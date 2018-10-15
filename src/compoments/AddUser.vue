@@ -27,23 +27,25 @@
             </b-form-input>
           </b-form-group>
              
+             
 
           <b-alert show v-if="seen" variant="success">{{alert}}</b-alert>
 
           <b-alert show variant="success">{{adduser.startTime}}</b-alert>
      
           <b-button class="btn title" type="submit" variant="primary">Add</b-button>
-          
+         
        
         </b-form>
       </div>
   
     </div>
-  
+
   </b-jumbotron>
 </template>
 
 <script>
+
   export default {
     data() {
       return {
@@ -59,6 +61,7 @@
         show: true,
         alert: '',
         seen: false,
+        
       }
     },
 

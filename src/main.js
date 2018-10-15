@@ -5,14 +5,6 @@ import BootstrapVue from 'bootstrap-vue'
 import {routes} from './router/routes'
 import VueResource from 'vue-resource'
 
-import moment from 'vue-moment'
-
-Vue.prototype.moment = moment
-
-Vue.use(require('vue-moment'), {
-  moment
-})
-
 Vue.use(VueResource)
 Vue.use(BootstrapVue)
 Vue.use(VueRouter)
