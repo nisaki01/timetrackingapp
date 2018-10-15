@@ -18,7 +18,7 @@
     <td>{{user.first_name}}</td>
     <td>{{user.last_name}}</td>
     <td>{{user.isActive}}</td>
-    <td>{{user.startTime | changeDate}}</td>
+    <td>{{loginDates | changeDate}}</td>
     <td><button type="button" class="btn btn-light" @click="deleteUser(user._id)">Delete</button></td>
     <!-- <td><button type="button" class="btn btn-light" @click="areYouSure()">s</button></td> -->
     </tr>
@@ -41,7 +41,7 @@ const moment = require('moment')
     },
     filters: {
       changeDate(){
-        return moment().format('MMMM Do YYYY, h:mm:ss a')
+        return moment().startOf('hour');
       }
     },
     methods: {

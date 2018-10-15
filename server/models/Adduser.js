@@ -14,11 +14,9 @@ var UserSchema = new mongoose.Schema({
     },
     password: String,
 
-    startTime:{
-      type: Date
-    },
-    endTime: {
-      type: Date
+    loginDates: {
+      startTime: [Date],
+      endTime: [Date]
     },
     isActive: Boolean
   });

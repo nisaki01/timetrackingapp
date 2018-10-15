@@ -54,7 +54,7 @@ const moment = require('moment')
         first_name: '',
         last_name: '',
         password: '',
-        startTime: new Date().getTime(),
+        time: new Date().getTime(),
         isActive: false
           
         },
@@ -79,14 +79,16 @@ const moment = require('moment')
       this.alert = 'Please fill in all required fields';
       }
       else {
-        
+        var gthis = this;
       let newUser = {
       first_name: this.adduser.first_name,
       last_name: this.adduser.last_name,
       email: this.adduser.email,
       password: this.adduser.password,
-      startTime: this.adduser.startTime,
-      isActive: this.adduser.isActive,
+      loginDates:{
+        startTime : [gthis.time]
+      },
+      isActive: gthis.adduser.isActive,
       }
 
       this.$http.post("http://localhost:3000/", newUser)
