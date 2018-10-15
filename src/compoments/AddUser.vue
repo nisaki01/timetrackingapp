@@ -31,7 +31,7 @@
 
           <b-alert show v-if="seen" variant="success">{{alert}}</b-alert>
 
-          <b-alert show variant="success">{{adduser.startTime}}</b-alert>
+          <b-alert show variant="success">{{adduser.startTime | changeDate}}</b-alert>
      
           <b-button class="btn title" type="submit" variant="primary">Add</b-button>
          
@@ -54,7 +54,7 @@ const moment = require('moment')
         first_name: '',
         last_name: '',
         password: '',
-        startTime: new Date(),
+        startTime: new Date().getTime(),
         isActive: false
           
         },
@@ -66,8 +66,8 @@ const moment = require('moment')
     },
 
     filters: {
-      changeDate(value){
-        return moment(value).formatNow();
+      changeDate(){
+        return moment().format('MMMM Do YYYY, h:mm:ss a')
       }
     },
 
