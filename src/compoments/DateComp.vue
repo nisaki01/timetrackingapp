@@ -44,9 +44,7 @@
 
     },
     methods: {
-
     onSubmit(){
-
         if(!this.login.email || !this.login.password ){
         this.seen = true  
         this.alert = 'Please fill in all required fields';

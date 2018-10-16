@@ -73,12 +73,11 @@ const moment = require('moment')
 
     methods: {
       onSubmit(){
-      if(!this.adduser.first_name || !this.adduser.last_name || !this.adduser.email || !this.adduser.password  ){
+      if(!this.adduser.first_name || !this.adduser.last_name || !this.adduser.email || !this.adduser.password){
       this.seen = true  
       this.alert = 'Please fill in all required fields';
       }
-      else {
-        
+      else {   
       let newUser = {
       first_name: this.adduser.first_name,
       last_name: this.adduser.last_name,

@@ -6,13 +6,11 @@ var UserSchema = new mongoose.Schema({
     },
     last_name: {
       type: String,
-      
     },
     email: {
       type: String,
     },
     password: String,
-
     loginDates: {
       startTime: [Date],
       endTime: [Date]
