@@ -21,7 +21,7 @@
     <td>{{user.loginDates.startTime | changeDate}}</td>
    
     <td><button type="button" class="btn btn-light" @click="deleteUser(user._id)">Delete</button></td>
-    <!-- <td><button type="button" class="btn btn-light" @click="areYouSure()">s</button></td> -->
+    <td><button type="button" class="btn btn-light" @click="areYouSure()">Delete with</button></td>
     </tr>
   
   </tbody>
@@ -31,47 +31,65 @@
     </b-jumbotron>
 </template>
   
-<script>    
-const moment = require('moment')
-  export default {
+<script>
+const moment = require("moment");
+export default {
+  data() {
+    return {
+      userList: []
+    };
+  },
+  filters: {
+    changeDate() {
+      return moment().format("MMMM Do YYYY, h:mm:ss a");
+    }
+  },
+  methods: {
+    areYouSure(){      
+      swal({
+  title: "Bist du sicher das du das tun möchtest?",
+  text: "Gelöschte datei können nicht wiederherstellen",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
     
-    data() {
-      return {
-        userList: [],
-      }
-    },
-    filters: {
-      changeDate(){
-        return moment().format('MMMM Do YYYY, h:mm:ss a')
-      }
-    },
-    methods: {
-      deleteUser(id){
-        this.$http.delete("http://localhost:3000/" +id)
-        .then(res => {
-          
- }).catch((error) => {
-          console.log(error)
-        })
-      }
-    },
-    
-    mounted () {
-        this.$http.get("http://localhost:3000/")
-        .then(res => {
-          let data = res.data;
-          for (let key in data) {
-            this.userList.push(data[key])
-          }
-        }).catch((error) => {
-          console.log(error)
-        })
-      }
-     
-      } 
+    swal("Datei wurde gelöscht", {
+      icon: "success",
+    });
+  } else {
+    swal("Your imaginary file is safe!");
+  }
+});
   
+    },
+    deleteUser(id) {
+      this.$http
+        .delete("http://localhost:3000/" + id)
+        .then(res => {})
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  },
+
+  mounted() {
+    this.$http
+      .get("http://localhost:3000/")
+      .then(res => {
+        let data = res.data;
+        for (let key in data) {
+          this.userList.push(data[key]);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+};
 </script>
 
 <style>
-
 </style>

@@ -43,62 +43,64 @@
 </template>
 
 <script>
-const moment = require('moment')
-  export default {
-    data() {
-      return {
-    adduser: {
-        email: '',
-        first_name: '',
-        last_name: '',
-        password: '',
+const moment = require("moment");
+export default {
+  data() {
+    return {
+      adduser: {
+        email: "",
+        first_name: "",
+        last_name: "",
+        password: "",
         time: new Date().getTime(),
-        isActive: false 
-        },
-        show: true,
-        alert: '',
-        seen: false,
-        
-      }
-    },
-
-    filters: {
-      changeDate(){
-        return moment().format('MMMM Do YYYY, h:mm:ss a')
-      }
-    },
-
-    methods: {
-      onSubmit(){
-      if(!this.adduser.first_name || !this.adduser.last_name || !this.adduser.email || !this.adduser.password){
-      this.seen = true  
-      this.alert = 'Please fill in all required fields';
-      }
-      else {   
-      let newUser = {
-      first_name: this.adduser.first_name,
-      last_name: this.adduser.last_name,
-      email: this.adduser.email,
-      password: this.adduser.password,
-      loginDates:{
-        startTime : [this.adduser.time]
+        isActive: false
       },
-      isActive: this.adduser.isActive
-      }
+      show: true,
+      alert: "",
+      seen: false
+    };
+  },
 
-      this.$http.post("http://localhost:3000/", newUser)
-      .then(res => {
-      this.seen = true;
-      this.alert = 'User Added'
-      })
-      .catch (res => {
+  filters: {
+    changeDate() {
+      return moment().format("MMMM Do YYYY, h:mm:ss a");
+    }
+  },
+
+  methods: {
+    onSubmit() {
+      if (
+        !this.adduser.first_name ||
+        !this.adduser.last_name ||
+        !this.adduser.email ||
+        !this.adduser.password
+      ) {
         this.seen = true;
-        this.alert = 'Error';
-      })
-      
-      }
-      }
+        this.alert = "Please fill in all required fields";
+      } else {
+        let newUser = {
+          first_name: this.adduser.first_name,
+          last_name: this.adduser.last_name,
+          email: this.adduser.email,
+          password: this.adduser.password,
+          loginDates: {
+            startTime: [this.adduser.time]
+          },
+          isActive: this.adduser.isActive
+        };
+
+        this.$http
+          .post("http://localhost:3000/", newUser)
+          .then(res => {
+            this.seen = true;
+            this.alert = "User Added";
+          })
+          .catch(res => {
+            this.seen = true;
+            this.alert = "Error";
+          });
       }
     }
-
+  }
+};
 </script>

@@ -27,50 +27,42 @@
 </template>
 
 <script>
+export default {
+  data() {
+    return {
+      login: {
+        email: "",
+        password: "",
+        startTime: new Date()
+      },
+      show: true
+    };
+  },
 
-  export default {
-    data() {
-      return {
-        login: {
-          email: '',
-          password: '',
-          startTime: new Date()
-        },
-        show: true
-      }
-    },
-
-    computed: {
-
-    },
-    methods: {
-    onSubmit(){
-        if(!this.login.email || !this.login.password ){
-        this.seen = true  
-        this.alert = 'Please fill in all required fields';
-        }
-        else {
-          
+  computed: {},
+  methods: {
+    onSubmit() {
+      if (!this.login.email || !this.login.password) {
+        this.seen = true;
+        this.alert = "Please fill in all required fields";
+      } else {
         let editUser = {
-        email: this.login.email,     
-        password: this.login.password,
-        startTime: this.login.startTime,
-        }
+          email: this.login.email,
+          password: this.login.password,
+          startTime: this.login.startTime
+        };
 
-        this.$http.put("http://localhost:3000/", editUser )
-        .then((res) => {
-        this.seen = true; 
-        this.alert = 'User edited'
-        }) .catch (res => {
-          console.error(error);
-          
-        })
-        
-        }
-        }
-
-        }
-    
+        this.$http
+          .put("http://localhost:3000/", editUser)
+          .then(res => {
+            this.seen = true;
+            this.alert = "User edited";
+          })
+          .catch(res => {
+            console.error(error);
+          });
       }
-
+    }
+  }
+};
 </script>
