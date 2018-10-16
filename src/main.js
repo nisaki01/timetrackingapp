@@ -6,6 +6,7 @@ import {routes} from './router/routes'
 import VueResource from 'vue-resource'
 
 Vue.use(VueResource)
+
 Vue.use(BootstrapVue)
 Vue.use(VueRouter)
 

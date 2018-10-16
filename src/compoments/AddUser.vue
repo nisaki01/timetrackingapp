@@ -31,7 +31,8 @@
 
           <b-alert show v-if="seen" variant="success">{{alert}}</b-alert>
 
-          <b-alert show variant="success">{{adduser.startTime | changeDate}}</b-alert>
+          <b-alert show variant="success">{{adduser.time | changeDate}}</b-alert>
+          
      
           <b-button class="btn title" type="submit" variant="primary">Add</b-button>
          
@@ -55,8 +56,7 @@ const moment = require('moment')
         last_name: '',
         password: '',
         time: new Date().getTime(),
-        isActive: false
-          
+        isActive: false 
         },
         show: true,
         alert: '',
@@ -72,33 +72,32 @@ const moment = require('moment')
     },
 
     methods: {
-          onSubmit(){
-
+      onSubmit(){
       if(!this.adduser.first_name || !this.adduser.last_name || !this.adduser.email || !this.adduser.password  ){
       this.seen = true  
       this.alert = 'Please fill in all required fields';
       }
       else {
-        var gthis = this;
+        
       let newUser = {
       first_name: this.adduser.first_name,
       last_name: this.adduser.last_name,
       email: this.adduser.email,
       password: this.adduser.password,
       loginDates:{
-        startTime : [gthis.time]
+        startTime : [this.adduser.time]
       },
-      isActive: gthis.adduser.isActive,
+      isActive: this.adduser.isActive
       }
 
       this.$http.post("http://localhost:3000/", newUser)
       .then(res => {
       this.seen = true;
       this.alert = 'User Added'
-      }) .catch (res => {
-        console.log(res)
+      })
+      .catch (res => {
         this.seen = true;
-        this.alert = 'Error'
+        this.alert = 'Error';
       })
       
       }
