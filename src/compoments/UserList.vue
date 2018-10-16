@@ -21,9 +21,8 @@
     <td>{{user.loginDates.startTime | changeDate}}</td>
    
     <td><button type="button" class="btn btn-light" @click="deleteUser(user._id)">Delete</button></td>
-    <td><button type="button" class="btn btn-light" @click="areYouSure()">Delete with</button></td>
-    </tr>
-  
+    <td><button type="button" class="btn btn-light" @click="areYouSure(user.id)">Delete with</button></td>
+    </tr>        
   </tbody>
 </table>
             </div>
@@ -45,25 +44,58 @@ export default {
     }
   },
   methods: {
-    areYouSure(){      
+    areYouSuree(id){
       swal({
   title: "Bist du sicher das du das tun möchtest?",
   text: "Gelöschte datei können nicht wiederherstellen",
   icon: "warning",
-  buttons: true,
-  dangerMode: true,
+  buttons: {
+    cancel: "Nein",
+    ok: 'Ja'
+  },
 })
-.then((willDelete) => {
-  if (willDelete) {
-    
-    swal("Datei wurde gelöscht", {
-      icon: "success",
-    });
-  } else {
-    swal("Your imaginary file is safe!");
+.then((value) => {
+  switch (value) {
+ 
+    case "ok":
+      swal("Datei wurde gelöscht", {
+            icon: "success"
+          });
+      break;
+ 
+    case "Nein":
+      
+      break;
+ 
+    default:
+      swal("Got away safely!");
   }
-});
-  
+})
+    },
+    areYouSure(id) {
+      swal({
+        title: "Bist du sicher das du das tun möchtest?",
+        text: "Gelöschte datei können nicht wiederherstellen",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+      }).then(willDelete => {
+        if (willDelete) {
+          this.$http
+            .delete("http://localhost:3000/" + this.id)
+            .then(res => {
+              
+            })
+            .catch(error => {
+              console.log(error);
+            });
+          swal("Datei wurde gelöscht", {
+            icon: "success"
+          });
+        } else {
+          swal("Your imaginary file is safe!");
+        }
+      });
     },
     deleteUser(id) {
       this.$http
