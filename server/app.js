@@ -10,6 +10,7 @@ mongoose.Promise = require('bluebird');
 const usersRouter = require('./routes/users');
 
 //db connection
+mongoose.set('useCreateIndex', true)
 mongoose.connect('mongodb://nisaki:timetracking1!!@ds223253.mlab.com:23253/timet',{ promiseLibrary: require('bluebird'),  useNewUrlParser: true } )
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
