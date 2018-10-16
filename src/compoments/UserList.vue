@@ -9,7 +9,6 @@
       <th scope="col">Vorname</th>
       <th scope="col">Nachname</th>
       <th scope="col">is Active</th>
-      <th scope="col">Time</th>
       <th scope="col">User Edit</th>
     </tr>
   </thead>
@@ -18,7 +17,7 @@
     <td>{{user.first_name}}</td>
     <td>{{user.last_name}}</td>
     <td>{{user.isActive}}</td>
-    <td>{{loginDates | changeDate}}</td>
+   
     <td><button type="button" class="btn btn-light" @click="deleteUser(user._id)">Delete</button></td>
     <!-- <td><button type="button" class="btn btn-light" @click="areYouSure()">s</button></td> -->
     </tr>
