@@ -27,13 +27,10 @@
             </b-form-input>
           </b-form-group>
              
-             
-
           <b-alert show v-if="seen" variant="success">{{alert}}</b-alert>
 
           <b-alert show variant="success">{{adduser.time | changeDate}}</b-alert>
           
-     
           <b-button class="btn title" type="submit" variant="primary">Add</b-button>
          
        
