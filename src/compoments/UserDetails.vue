@@ -23,6 +23,7 @@
 </template>
   
 <script>
+import {mapGetters} from 'vuex'
 const moment = require("moment");
 export default {
   data() {
@@ -35,6 +36,7 @@ export default {
       return moment().format("MMMM Do YYYY, h:mm:ss a");
     }
   },
+
   methods: {
     areYouSure(id) {
 
@@ -73,8 +75,8 @@ export default {
         });
     }
   },
-
   mounted() {
+    
     this.$http
       .get("http://localhost:3000/")
       .then(res => {

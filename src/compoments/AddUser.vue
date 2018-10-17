@@ -84,7 +84,8 @@ export default {
           email: this.adduser.email,
           password: this.adduser.password,
           loginDates: {
-            startTime: [this.adduser.time]
+            startTime: [this.adduser.time],
+            endTime: [this.adduser.time]
           },
           isActive: this.adduser.isActive
         };

@@ -21,8 +21,9 @@
     <td>{{user.loginDates.startTime | changeDate}}</td>
    
     <!-- <td><button type="button" class="btn btn-light" @click="deleteUser(user._id)">Delete</button></td> -->
-    <!-- <td><button type="button" class="btn btn-light" @click="areYouSure(user._id)">Löschen</button></td> -->
-    <td><router-link v-bind:to="'/user-details/'" ><button type="button" class="btn btn-light" @click="userDetails(user._id, user.first_name, user.last_name)">Mehr</button></router-link></td>
+    <td><button type="button" class="btn btn-light" @click="areYouSure(user._id)">Löschen</button></td>
+    <td><router-link v-bind:to="'/user-details/'" ><button type="button" class="btn btn-light" 
+    @click="userID(user._id)">Mehr</button></router-link></td>
     </tr>        
   </tbody>
 </table>
@@ -36,7 +37,7 @@ const moment = require("moment");
 export default {
   data() {
     return {
-      userList: []
+      userList: [],
     };
   },
   filters: {
@@ -45,9 +46,11 @@ export default {
     }
   },
   methods: {
-    userDetails(id){
-      this.$store.state.userDetails = id;
-    },
+
+    // userID(id){
+    // this.$store.commit("changeUserID", id )
+    // },
+
     areYouSure(id) {
       swal({
         title: "Bist du sicher das du das tun möchtest?",
