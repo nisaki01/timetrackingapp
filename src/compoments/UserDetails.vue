@@ -2,27 +2,18 @@
     <b-jumbotron class="bg-white container-fluid" id="users" >
         <div class="container col-lg-8">          
           <div class="col-centered">
-            <h3 class="title">Users</h3>  
+            <h3 class="title" v-for="(user, index) in userList" :key="index" >{{user.first_name}}</h3>  
  <table class="table table-hover ">
   <thead>
     <tr>
-      <th scope="col">Vorname</th>
-      <th scope="col">Nachname</th>
-      <th scope="col">is Active</th>
-      <th scope="col">Begin Zeit</th>
-      <th scope="col">User Edit</th>
+      <th scope="col">Begin</th>
+      <th scope="col">End</th>
     </tr>
   </thead>
   <tbody>
     <tr v-for="(user, index) in userList" :key="index">
-    <td>{{user.first_name}}</td>
-    <td>{{user.last_name}}</td>
-    <td>{{user.isActive}}</td>
     <td>{{user.loginDates.startTime | changeDate}}</td>
-   
-    <!-- <td><button type="button" class="btn btn-light" @click="deleteUser(user._id)">Delete</button></td> -->
-    <!-- <td><button type="button" class="btn btn-light" @click="areYouSure(user._id)">Löschen</button></td> -->
-    <td><router-link v-bind:to="'/user-details/'" ><button type="button" class="btn btn-light" @click="userDetails(user._id, user.first_name, user.last_name)">Mehr</button></router-link></td>
+    <td>{{user.loginDates.endTime | changeDate}}</td>
     </tr>        
   </tbody>
 </table>
@@ -45,10 +36,8 @@ export default {
     }
   },
   methods: {
-    userDetails(id){
-      this.$store.state.userDetails = id;
-    },
     areYouSure(id) {
+
       swal({
         title: "Bist du sicher das du das tun möchtest?",
         text:"Gelöschte datei können nicht wiederherstellen",
@@ -61,7 +50,7 @@ export default {
           this.$http
             .delete("http://localhost:3000/" + id)
             .then(res => {
-           this.$router.push(location.reload());
+           this.$router.push({path: '/user-list'});
             })
             .catch(error => {
               console.log(error);
@@ -74,6 +63,15 @@ export default {
         }
       });
     },
+    deleteUser(id) {
+      console.log(id)
+      this.$http
+        .delete("http://localhost:3000/" + id)
+        .then(res => {})
+        .catch(error => {
+          console.log(error);
+        });
+    }
   },
 
   mounted() {

@@ -4,11 +4,15 @@ import ShowUser from '../compoments/ShowUser.vue'
 import UserList from '../compoments/UserList.vue'
 import Home from '../compoments/Home.vue'
 import DateNow from '../compoments/DateComp.vue'
+import UserDetails from '../compoments/UserDetails.vue'
 
 
 
 export const routes = [
-    {   path: '/date-log',
+  {   path: '/user-details',
+        name: 'UserDetails',
+        component: UserDetails},  
+  {   path: '/date-log',
         name: 'DateComp',
         component: DateNow},
      {  path: '',

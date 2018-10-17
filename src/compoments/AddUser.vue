@@ -94,6 +94,11 @@ export default {
           .then(res => {
             this.seen = true;
             this.alert = "User Added";
+
+            setTimeout( () => {
+            this.$router.push(location.reload());
+            }, 2000);
+            
           })
           .catch(res => {
             this.seen = true;
