@@ -23,7 +23,7 @@
     <!-- <td><button type="button" class="btn btn-light" @click="deleteUser(user._id)">Delete</button></td> -->
     <td><button type="button" class="btn btn-light" @click="areYouSure(user._id)">Löschen</button></td>
     <td><router-link v-bind:to="'/user-details/'" ><button type="button" class="btn btn-light" 
-    @click="userID(user._id)">Mehr</button></router-link></td>
+    @click="returnID(user._id)">Mehr</button></router-link></td>
     </tr>        
   </tbody>
 </table>
@@ -37,7 +37,7 @@ const moment = require("moment");
 export default {
   data() {
     return {
-      userList: [],
+      userList: []
     };
   },
   filters: {
@@ -46,25 +46,25 @@ export default {
     }
   },
   methods: {
-
-    // userID(id){
-    // this.$store.commit("changeUserID", id )
-    // },
+    returnID(id) {
+      this.$store.commit("changeUserID", id);
+    },
 
     areYouSure(id) {
       swal({
         title: "Bist du sicher das du das tun möchtest?",
-        text:"Gelöschte datei können nicht wiederherstellen",
+        text: "Gelöschte datei können nicht wiederherstellen",
         icon: "warning",
         buttons: true,
         dangerMode: true
-        
-      }).then(willDelete => {
-        if (willDelete) {
+      }).then(Delete => {
+        if (Delete) {
           this.$http
             .delete("http://localhost:3000/" + id)
             .then(res => {
-           this.$router.push(location.reload());
+              setTimeout(() => {
+                this.$router.push(location.reload());
+              }, 2000);
             })
             .catch(error => {
               console.log(error);
@@ -73,10 +73,9 @@ export default {
             icon: "success"
           });
         } else {
-
         }
       });
-    },
+    }
   },
 
   mounted() {

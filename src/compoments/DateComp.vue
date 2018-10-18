@@ -34,7 +34,7 @@ export default {
       login: {
         email: "",
         password: "",
-        time: new Date().getTime()
+        time: new Date()
       },
       show: true
     };

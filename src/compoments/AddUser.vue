@@ -66,7 +66,6 @@ export default {
       return moment().format("MMMM Do YYYY, h:mm:ss a");
     }
   },
-
   methods: {
     onSubmit() {
       if (
