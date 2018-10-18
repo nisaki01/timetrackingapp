@@ -43,7 +43,7 @@ export default {
     changeDate() {
       return moment().format("MMMM Do YYYY, h:mm:ss a");
     },
-    
+
     methods: {
       onSubmit() {
         if (!this.login.email || !this.login.password) {

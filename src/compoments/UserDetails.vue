@@ -23,7 +23,7 @@
 </template>
   
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from "vuex";
 const moment = require("moment");
 export default {
   data() {
@@ -39,20 +39,18 @@ export default {
 
   methods: {
     areYouSure(id) {
-
       swal({
         title: "Bist du sicher das du das tun möchtest?",
-        text:"Gelöschte datei können nicht wiederherstellen",
+        text: "Gelöschte datei können nicht wiederherstellen",
         icon: "warning",
         buttons: true,
         dangerMode: true
-        
       }).then(willDelete => {
         if (willDelete) {
           this.$http
             .delete("http://localhost:3000/" + id)
             .then(res => {
-           this.$router.push({path: '/user-list'});
+              this.$router.push({ path: "/user-list" });
             })
             .catch(error => {
               console.log(error);
@@ -61,12 +59,11 @@ export default {
             icon: "success"
           });
         } else {
-
         }
       });
     },
     deleteUser(id) {
-      console.log(id)
+      console.log(id);
       this.$http
         .delete("http://localhost:3000/" + id)
         .then(res => {})
@@ -76,7 +73,6 @@ export default {
     }
   },
   mounted() {
-    
     this.$http
       .get("http://localhost:3000/")
       .then(res => {
