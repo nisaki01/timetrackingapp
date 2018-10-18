@@ -20,7 +20,6 @@
           <b-button  class="btn title" type="submit" variant="primary">Login</b-button>
         </b-form>
       </div>
-  
     </div>
   
   </b-jumbotron>
@@ -59,7 +58,6 @@ export default {
             },
             isActive: this.login.isActive
           };
-
           this.$http
             .put("http://localhost:3000/", editUser)
             .then(res => {

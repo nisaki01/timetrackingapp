@@ -37,7 +37,7 @@ const moment = require("moment");
 export default {
   data() {
     return {
-      userList: []
+      userList: [],
     };
   },
   filters: {
@@ -46,25 +46,28 @@ export default {
     }
   },
   methods: {
-    returnID(id) {
-      this.$store.commit("changeUserID", id);
+    returnID(id){
+    this.$store.commit("changeUserID", id )
     },
 
     areYouSure(id) {
       swal({
         title: "Bist du sicher das du das tun möchtest?",
-        text: "Gelöschte datei können nicht wiederherstellen",
+        text:"Gelöschte datei können nicht wiederherstellen",
         icon: "warning",
         buttons: true,
         dangerMode: true
-      }).then(Delete => {
-        if (Delete) {
+        
+      }).then(willDelete => {
+        if (willDelete) {
           this.$http
             .delete("http://localhost:3000/" + id)
             .then(res => {
-              setTimeout(() => {
-                this.$router.push(location.reload());
-              }, 2000);
+           
+            setTimeout(() => {
+              this.$router.push(location.reload());
+            }, 2000);
+            
             })
             .catch(error => {
               console.log(error);
@@ -73,9 +76,10 @@ export default {
             icon: "success"
           });
         } else {
+
         }
       });
-    }
+    },
   },
 
   mounted() {
