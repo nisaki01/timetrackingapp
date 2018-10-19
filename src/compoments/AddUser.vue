@@ -52,7 +52,7 @@ export default {
         first_name: "",
         last_name: "",
         password: "",
-        time: new Date().getTime(),
+        time: new Date(),
         isActive: false
       },
       show: true,
@@ -83,8 +83,8 @@ export default {
           email: this.adduser.email,
           password: this.adduser.password,
           loginDates: {
-            startTime: [this.adduser.time],
-            endTime: [this.adduser.time]
+            startTime: this.adduser.time,
+            endTime: this.adduser.time
           },
           isActive: this.adduser.isActive
         };

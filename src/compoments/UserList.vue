@@ -63,11 +63,11 @@ export default {
           this.$http
             .delete("http://localhost:3000/" + id)
             .then(res => {
-           
+
             setTimeout(() => {
               this.$router.push(location.reload());
             }, 2000);
-            
+
             })
             .catch(error => {
               console.log(error);

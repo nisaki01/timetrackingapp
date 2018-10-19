@@ -58,6 +58,7 @@ export default {
             },
             isActive: this.login.isActive
           };
+
           this.$http
             .put("http://localhost:3000/", editUser)
             .then(res => {
